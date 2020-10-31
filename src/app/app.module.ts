@@ -1,16 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+
+import {AppComponent} from './app.component';
+import {SearchComponent} from './search/search.component';
+import {NavMenuComponent} from './nav-menu/nav-menu.component';
+import {AboutUsComponent} from './about-us/about-us.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HashService} from './services/hash.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchComponent,
+    NavMenuComponent,
+    AboutUsComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot([
+      {path: '', component: SearchComponent, pathMatch: 'full'},
+      {path: 'about-us', component: AboutUsComponent},
+    ], { useHash: true}),
+    BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [HashService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
