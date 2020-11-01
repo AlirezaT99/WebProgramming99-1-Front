@@ -2,12 +2,19 @@
 
 import {HashService} from '../services/hash.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+
+  constructor(
+    private service: HashService
+  ) {
+  }
   num1: string;
   num2: string;
   result: string;
@@ -15,9 +22,13 @@ export class SearchComponent implements OnInit {
   lineNumber: string;
   lineContent: string;
 
-  constructor(
-    private service: HashService
-  ) {
+  private static showError(): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'خطا!',
+      text: 'لطفاً مقادیر را بدرستی وارد نمایید...',
+      confirmButtonText: 'حله'
+    });
   }
 
   public ngOnInit(): void {
@@ -29,7 +40,7 @@ export class SearchComponent implements OnInit {
   async sendNumbers(backend: string): Promise<void> {
     const response = await this.service.getResult(this.num1, this.num2, backend);
     if (response.hasError) {
-      alert('Error');
+      SearchComponent.showError();
     } else {
       this.result = response.result;
     }
@@ -38,7 +49,7 @@ export class SearchComponent implements OnInit {
   async sendPageNumber(backend: string): Promise<void> {
     const response = await this.service.getLine(this.lineNumber, backend);
     if (response.hasError) {
-      alert('Error');
+      SearchComponent.showError();
     } else {
       this.lineContent = response.result;
     }

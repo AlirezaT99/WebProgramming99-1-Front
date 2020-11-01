@@ -8,8 +8,7 @@ export class HashService {
   constructor(private http: HttpClient) {
   }
 
-  private port = '8080';
-  private baseUrl = `${location.hostname}:${this.port}`;
+  private baseUrl = `${location.hostname}`;
 
   public async getResult(num1: string, num2: string, backend: string): Promise<ResultType> {
     return new Promise<ResultType>((resolve) => {
