@@ -8,7 +8,7 @@
   - آشنایی با ساختار فایل‌ها و فولدربندی
   - ماژول‌ها، کامپوننت‌ها و سرویس‌ها
   - کار با کامپوننت‌ها
-  -
+  - مرتب کردن قطعه‌های پازل!
   -
   -
   - ان جی فور و این داستانا
@@ -114,11 +114,72 @@ const routes: Routes = [
 ```
 </div>
 در قسمت بعدی مفصل‌تر به این موارد و کار با کامپوننت‌ها پرداخته خواهد شد
+
 ## کار با کامپوننت‌ها
+قبل از هرچیز بیایید با هم فایل app.component.ts را بررسی کنیم:
+<div dir="ltr">
 
+```typescript
+import { Component } from '@angular/core';
 
-## عنوان
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'first-project';
+}
 
+```
+</div>
+
+در دکوراتور کامپوننت، سه عبارت کلیدی وجود دارد:
+  - <b>سلکتور:</b> همانند تگ‌های html، هر جا که در فایل‌های html ماژول‌هایی که این کامپوننت را می‌شناسند، تگ `<app-root></app-root>` را درج کنید، تمام محتوای html مربوط به این کامپوننت آنجا لود خواهد شد!
+  - <b>تمپلت:</b> اینجا فایل html مربوط به کامپوننت نشان داده می‌شود.
+  - <b>استایل:</b> و اینجا آرایه‌از فایل‌های استایل مرتبط با این کامپوننت مشخص می‌شود.
+<br>
+به راحتی می‌توان با اجرای دستور زیر، یک کامپوننت جدید به برنامه اضافه کرد:
+<div dir="ltr">
+
+```
+ng generate component my-component
+```
+</div>
+و CLI انگولار تمام فایل‌های ts و html و scss کامپوننت را در فولدری به نام my-component می‌سازد و در app.module.ts نیز کامپوننت را ایمپورت کرده و به قسمت declarations اصافه می‌کند!
+
+## مرتب کردن قطعه‌های پازل!
+در قسمت‌های قبل به router-outlet و همچنین به selector در کامپوننت‌ها اشاره کردیم، وقت آن است که نگاهی به index.html بیندازیم:
+<div dir="ltr">
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FirstProject</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+```
+</div>
+به body توجه کنید. تگ app-root به برنامه می‌گوید که محتویات app.component.html را اینجا نمایش دهد...
+الان در فایل مذکور، کد طراحی همان صفحه‌ی اصلی که بالاتر دیدیم وجود دارد.
+<br>
+اما فرض کنید برنامه‌ای داریم که یک navbar همیشه بالای صفحه‌اش دارد و محتوای پس از آن با توجه به مسیری که قرار داریم پر می‌شود. در این صورت فایل app.component.html ما می‌تواند اینگونه باشد:
+<div dir="ltr">
+
+```html
+<app-nav-menu></app-nav-menu>
+<router-outlet></router-outlet>
+```
+</div>
+که در آن app-nav-menu، سلکتور کامپوننتی است که برای navbar ساخته ایم
 
 ## عنوان
 
