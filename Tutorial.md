@@ -193,6 +193,7 @@ ng generate component my-component
 <div *ngIf="ali.age >= 18">Ali is {{ali.age}} years old and can drive a car!</div>
 ```
 </div>
+
   - <b>اجرای حلقه با *ngFor:</b> بعنوان مثال فرض کنید جایی نیاز داریم تا تمام عناصر یک لیست را در یک قالب خاص نشان دهیم، اینجا می‌توانیم به راحتی با استفاده از ngFor نیاز خود را رفع کنیم:
   
 <div dir="ltr">
@@ -201,7 +202,7 @@ ng generate component my-component
 <li *ngFor="let student of students">{{student.name}}</li>
 ```
 </div>
-برای آشنایی بیشتر با این موارد می‌توانید به
+برای آشنایی بیشتر با این موارد (مانند ngSwitch که عملکرد switch-case را پیاده‌سازی می‌کند) می‌توانید به
 <a target="_blank" href="https://angular.io/guide/structural-directives">
 این صفحه
 </a>
